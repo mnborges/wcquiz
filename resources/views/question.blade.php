@@ -31,8 +31,8 @@
                     @foreach ($questions as $question)
                         <div class="carousel-item text-center @if ($loop->first) active @endif">
                             <h2>Question {{ $loop->iteration }}</h2>
-                            <p>{{ $question['main'] }}</p>
-                            @foreach ($question['answers'] as $answer)
+                            <p>{{ $question['sentence'] }}</p>
+                            @foreach (json_decode($question['alternatives'], true) as $answer)
                                 <div class="form-check ">
                                     <input class="form-check-input" type="radio" name="{{ $loop->parent->iteration }}"
                                         id="exampleRadios1" value="{{ $answer }}"
