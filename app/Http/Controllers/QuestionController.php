@@ -9,44 +9,16 @@ class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        array(
-            1 => [
-                "sentence" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "alternatives" => [
-                    "1" => "Lorem ipsum dolor",
-                    "2" => "sit amet, consectetur adipiscing elit",
-                    "3" => "sed do eiusmod tempor incididunt",
-                ]
-
-            ],
-            2 => [
-                "sentence" => "Urna nec tincidunt praesent semper feugiat nibh sed pulvinar. Mauris a diam maecenas sed enim ut sem viverra aliquet.",
-                "alternatives" => [
-                    "1" => "Viverra justo nec ultrices",
-                    "2" => "Senectus et netus et malesuada fames ac",
-                    "3" => "Odio pellentesque diam",
-                ]
-
-            ],
-            3 => [
-                "sentence" => "Mi eget mauris pharetra et ultrices neque ornare aenean euismod.",
-                "alternatives" => [
-                    "1" => "Enim nunc faucibus a pellentesque",
-                    "2" => "Euismod nisi porta lorem mollis aliquam ut porttitor",
-                    "3" => "Odio eu feugiat pretium nibh",
-                ]
-
-            ]
-        );
         $questions = [];
         array_push($questions, Question::where("type", 1)->inRandomOrder()->first());
         array_push($questions, Question::where("type", 2)->inRandomOrder()->first());
         array_push($questions, Question::where("type", 3)->inRandomOrder()->first());
+        //array_push($questions, Question::where("type", 4)->inRandomOrder()->first());
+        array_push($questions, Question::where("type", 1)->inRandomOrder()->first());
+        array_push($questions, Question::where("type", 2)->inRandomOrder()->first());
 
 
         return view('question', ["questions" => $questions]);

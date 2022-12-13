@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,3 +51,11 @@ Route::get('/quiz', function () {
 });
 
 Route::resource('/', QuestionController::class)->only(['index']);
+
+use Illuminate\Http\Request;
+
+// temporary route to view form data
+Route::post('/quiz', function (Request $request) {
+    $input = $request->all();
+    return response($input);
+});

@@ -17,50 +17,70 @@
 </head>
 
 <body>
-    <div class="my-5 d-flex flex-column ">
-        <div class="align-self-center w-50 rounded-pill text-center text-white bg-success bg-gradient shadow-lg p-4 ">
-            <h1>2022 World Cup Quiz</h1>
-            <p>This year <abbr titile="Federation Internationale de Football Association">FIFA</abbr> is organising the
-                22nd World Cup tournament. How up to date are you about the competition? Answer a few questions to find
-                out!</p>
-        </div>
-        <div id="carouselExampleControls" class="carousel carousel-dark slide">
-            <div class="carousel-inner">
-                <form class="bg-white mt-4 rounded p-4" method="POST" action="/quiz">
-                    @csrf
-                    @foreach ($questions as $question)
-                        <div class="carousel-item text-center @if ($loop->first) active @endif">
-                            <h2>Question {{ $loop->iteration }}</h2>
-                            <p>{{ $question['sentence'] }}</p>
-                            @foreach (json_decode($question['alternatives'], true) as $answer)
-                                <div class="form-check ">
-                                    <input class="form-check-input" type="radio" name="{{ $loop->parent->iteration }}"
-                                        id="exampleRadios1" value="{{ $answer }}"
-                                        @if (!$loop->parent->last) data-bs-target="#carouselExampleControls" data-bs-slide="next" @endif>
-
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        {{ $answer }}
-                                    </label>
-                                </div>
-                            @endforeach
-                            @if (!$loop->first)
-                                <button class="btn btn-outline-dark"
-                                    @if (!$loop->last) type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev"> Previous @else type="submit" >
-                                    Submit @endif</button>
-                            @endif
-                        </div>
-                    @endforeach
-                </form>
+    <div class="container">
+        <div class="row">
+            <div
+                class="col-12 col-lg-10 m-auto mt-4 rounded-pill text-center text-white bg-success bg-gradient shadow-lg p-4 ">
+                <h1>2022 World Cup Quiz</h1>
+                <p>This year <abbr titile="Federation Internationale de Football Association">FIFA</abbr> is organising
+                    the
+                    22nd World Cup tournament. How up to date are you about the competition? Answer a few questions to
+                    find
+                    out!</p>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div id="carousel" class="col-12 col-lg-8 carousel carousel-dark slide ">
+                <div class="clearfix carousel-inner ">
+                    <form class="bg-white mt-4 rounded p-4 " method="POST" action="/quiz">
+                        @csrf
+                        @foreach ($questions as $question)
+                            <div class="carousel-item @if ($loop->first) active @endif">
+                                <div class="">
+                                    <h2>Question {{ $loop->iteration }}</h2>
+                                    <p>{{ $question['sentence'] }}</p>
+                                    @foreach (json_decode($question['alternatives'], true) as $answer)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio"
+                                                name="{{ $loop->parent->iteration }}" id="{{ $question['id'] }}"
+                                                value="{{ $answer }}" oninput="carousel.next()">
+
+                                            <label class="form-check-label" for="{{ $question['id'] }}">
+                                                {{ $answer }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="">
+                                    @if (!$loop->first)
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                                            data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                    @endif
+                                </div>
+                                @if ($loop->last)
+                                    <button class="btn btn-outline-dark" type="submit"> Submit
+                                    </button>
+                                @endif
+
+
+                            </div>
+                        @endforeach
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
         </script>
         <script>
-            var myCarousel = document.querySelector('#carouselExampleControls')
+            var myCarousel = document.querySelector('#carousel')
             var carousel = new bootstrap.Carousel(myCarousel, {
-                interval: 5000,
-                wrap: false
+                wrap: false,
+                touch: false,
             })
         </script>
 </body>
