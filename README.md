@@ -126,7 +126,7 @@ Migrate and seed the Database
   ./vendor/bin/sail php artisan migrate:fresh --seed
 ```
 
-Go to [localhost](localhost) in your web browser to check out the application
+Go to [localhost](http://localhost/) in your web browser to check out the application
 
 To stop all containers you can press Control + C in the terminal or use the stop command
 
