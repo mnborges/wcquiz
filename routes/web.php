@@ -15,5 +15,6 @@ use App\Http\Controllers\QuestionController;
 |
 */
 
+// Register routes to GET and POST methods to '/'
 Route::resource('/', QuestionController::class)->only(['index']);
 Route::post('/', ComputeResult::class); 

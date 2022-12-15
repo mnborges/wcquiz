@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
 class ComputeResult extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Handle the incoming POST request.
      *
      * @param  \Illuminate\Http\Request  $request
      */
     public function __invoke(Request $request)
     {
-
+        // Collect answers submitted through the form
         $answers = $request->collect()->except(["_token"]);
+        // Create collection with only correct answers
         $correct = $answers->filter(function ($v, $k) {
             $q = Question::where('id', $k)->get()->first();
             if (!$q)
