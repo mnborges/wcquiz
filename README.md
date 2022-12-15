@@ -18,13 +18,13 @@ Maybe you can mention me or this repo in the acknowledgements too
 <!-- Badges -->
 <p>
   <a href="https://github.com/mnborges/wcquiz/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors//mnborges/wcquiz" alt="contributors" />
+    <img src="https://img.shields.io/github/contributors/mnborges/wcquiz" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/mnborges/wcquiz/" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/mnborges/wcquiz" alt="last update" />
   </a>
   <a href="https://github.com/mnborges/wcquiz/issues/">
-    <img src="https://img.shields.io/github/issues//mnborges/wcquiz" alt="open issues" />
+    <img src="https://img.shields.io/github/issues/mnborges/wcquiz" alt="open issues" />
   </a>
 </p>
    
