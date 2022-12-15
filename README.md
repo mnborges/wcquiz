@@ -66,9 +66,7 @@ Despite the app's simplicity, it is still a fun trivia to play and interact with
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="screenshots/screenshot1.JPG" alt="screenshot of the first question" />
-  <img src="screenshots/screenshot2.JPG" alt="screenshot of middle question" />
-  <img src="screenshots/screenshot3.JPG" alt="screenshot of trivia result" />
+  <img src="screenshots/wcquiz-mnborges.gif" alt="gif of the application interface" />
 </div>
 
 <!-- TechStack -->
