@@ -88,6 +88,10 @@ Despite the app's simplicity, it is still a fun trivia to play and interact with
 
 To run this project, you will need to define the variables in the [.env.example](.env.example) file to your local environment variables in the .env file.
 
+```bash
+  cp .env.example .env
+```
+
 <!-- Getting Started -->
 
 ## :toolbox: Getting Started
@@ -96,43 +100,94 @@ To run this project, you will need to define the variables in the [.env.example]
 
 ### :bangbang: Prerequisites
 
-Use Laravel's built-in interface solution, [Sail](https://github.com/laravel/sail), to run the project using [Docker](https://docker.com). To get started [Docker Desktop](https://www.docker.com/products/docker-desktop) should be installed in your machine. Plus, if you use Windows, Windows Subsystem for Linux 2 (WSL2) must be installed and enabled. For more information view [Laravel documention](https://laravel.com/docs/9.x#laravel-and-docker).
+To get started [Docker Desktop](https://www.docker.com/products/docker-desktop) should be installed in your machine. Plus, if you use Windows and want to use Laravel's built-in interface solution, [Sail](https://github.com/laravel/sail), to run the project using [Docker](https://docker.com), windows Subsystem for Linux 2 (WSL2) must be installed and enabled. For more information view [Laravel documention](https://laravel.com/docs/9.x#laravel-and-docker).
 
 <!-- Run Locally -->
 
 ### :running: Run Locally
 
-Clone the project
+If you wish to use Sail on windows systems, launch Windows Terminal and begin a new terminal session for your WSL2 Linux operating system.
+
+1. Clone the project
 
 ```bash
   git clone https://github.com/mnborges/wcquiz.git
 ```
 
-Go to the project directory
+2. Go to the project directory
 
 ```bash
   cd wcquiz
 ```
 
-Create and start Docker containers
+3. Install all composer dependacies
+
+```bash
+  docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
+```
+
+4. Create and start Docker containers
+
+-   Using Sail Interface
 
 ```bash
   ./vendor/bin/sail up
 ```
 
-Migrate and seed the Database
+-   Without Sail
+
+```bash
+  docker-compose up
+```
+
+5. In a new terminal, generate a new app key to your .env file
+
+-   Using Sail Interface
+
+```bash
+./vendor/bin/sail php artisan key:generate
+
+```
+
+-   Without Sail
+
+    Run the following command and copy the container ID of the **sail-8.1/app** image
+
+```bash
+  docker ps
+```
+
+With the copied ID, run
+
+```bash
+docker exec -t -i [container_ID] bash
+```
+
+Finally, within the container's shell, execute the following command to generate the app key
+
+```bash
+php artisan key:generate
+```
+
+6. Migrate and seed the Database
+
+-   With Sail
 
 ```bash
   ./vendor/bin/sail php artisan migrate:fresh --seed
 ```
 
-Go to [localhost](localhost) in your web browser to check out the application
+-   Without Sail
 
-To stop all containers you can press Control + C in the terminal or use the stop command
+    Within the sail-8.1/app container, execute
 
 ```bash
-  ./vendor/bin/sail stop
+  php artisan migrate:fresh --seed
 ```
+
+Go to [localhost](https://localhost) in your web browser to check out the application
+
+To stop all containers you can press Control + C in the terminal.
 
 <!-- Contact -->
 
