@@ -46,7 +46,6 @@ Maybe you can mention me or this repo in the acknowledgements too
 -   [About the Project](#star2-about-the-project)
     -   [Screenshots](#camera-screenshots)
     -   [Tech Stack](#space_invader-tech-stack)
-    -   [Environment Variables](#key-environment-variables)
 -   [Getting Started](#toolbox-getting-started)
     -   [Prerequisites](#bangbang-prerequisites)
     -   [Run Locally](#running-run-locally)
@@ -82,16 +81,6 @@ Despite the app's simplicity, it is still a fun trivia to play and interact with
     <li><a href="https://www.docker.com/">Docker</a></li>
   </ul>
 
-<!-- Env Variables -->
-
-### :key: Environment Variables
-
-To run this project, you will need to define the variables in the [.env.example](.env.example) file to your local environment variables in the .env file.
-
-```bash
-  cp .env.example .env
-```
-
 <!-- Getting Started -->
 
 ## :toolbox: Getting Started
@@ -100,13 +89,13 @@ To run this project, you will need to define the variables in the [.env.example]
 
 ### :bangbang: Prerequisites
 
-To get started [Docker Desktop](https://www.docker.com/products/docker-desktop) should be installed in your machine. Plus, if you use Windows and want to use Laravel's built-in interface solution, [Sail](https://github.com/laravel/sail), to run the project using [Docker](https://docker.com), windows Subsystem for Linux 2 (WSL2) must be installed and enabled. For more information view [Laravel documention](https://laravel.com/docs/9.x#laravel-and-docker).
+To get started [Docker Desktop](https://www.docker.com/products/docker-desktop) should be installed in your machine. Plus, if you use Windows, Windows Subsystem for Linux 2 (WSL2) must be installed and enabled. Detailed instructions can be found in the [Microsoft documentation](https://learn.microsoft.com/en-us/windows/wsl/install). For more information check out the [Laravel documention](https://laravel.com/docs/9.x#laravel-and-docker).
 
 <!-- Run Locally -->
 
 ### :running: Run Locally
 
-If you wish to use Sail on windows systems, launch Windows Terminal and begin a new terminal session for your WSL2 Linux operating system.
+If you are on Windows, you should [run your Linux distribution](https://learn.microsoft.com/en-us/windows/wsl/install#ways-to-run-multiple-linux-distributions-with-wsl).
 
 1. Clone the project
 
@@ -120,74 +109,40 @@ If you wish to use Sail on windows systems, launch Windows Terminal and begin a 
   cd wcquiz
 ```
 
-3. Install all composer dependacies
+3. Define the variables in the [.env.example](.env.example) file to your local environment variables in the .env file.
+
+```bash
+  cp .env.example .env
+```
+
+Note that the `APP_KEY` variable is undefined, this will be generated in the next steps.
+
+4. Install dependacies
 
 ```bash
   docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
 ```
 
-4. Create and start Docker containers
-
--   Using Sail Interface
+5. Create and start Docker containers
 
 ```bash
   ./vendor/bin/sail up
 ```
 
--   Without Sail
-
-```bash
-  docker-compose up
-```
-
-5. In a new terminal, generate a new app key to your .env file
-
--   Using Sail Interface
+6. Open a new terminal session and generate a new app key to your .env file
 
 ```bash
 ./vendor/bin/sail php artisan key:generate
 
 ```
 
--   Without Sail
-
-    Run the following command and copy the container ID of the **sail-8.1/app** image
-
-```bash
-  docker ps
-```
-
-With the copied ID, run
-
-```bash
-docker exec -t -i [container_ID] bash
-```
-
-Finally, within the container's shell, execute the following command to generate the app key
-
-```bash
-php artisan key:generate
-```
-
-6. Migrate and seed the Database
-
--   With Sail
+7. Migrate and seed the Database
 
 ```bash
   ./vendor/bin/sail php artisan migrate:fresh --seed
 ```
 
--   Without Sail
-
-    Within the sail-8.1/app container, execute
-
-```bash
-  php artisan migrate:fresh --seed
-```
-
-Go to [localhost](https://localhost) in your web browser to check out the application
-
-To stop all containers you can press Control + C in the terminal.
+8. Go to [localhost](https://localhost) in your web browser to check out the application. To stop all containers you can press Control + C in the terminal.
 
 <!-- Contact -->
 
@@ -201,5 +156,5 @@ Maieza N. Borges - [LinkedIn](https://www.linkedin.com/in/maieza-borges-903895b8
 
 I would like to acknowledge some projects that were valuable to the development of this app:
 
--   [Awesome README](https://github.com/matiassingers/awesome-readme) for the template of this page.
+-   [README Template](https://github.com/Louis3797/awesome-readme-template) for the template of this page.
 -   [World Cup JSON](https://github.com/estiens/world_cup_json) for the amazing World Cup API used to seed the DB for the app's questions.

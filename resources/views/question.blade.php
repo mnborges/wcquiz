@@ -31,14 +31,9 @@
                     <div
                         class="col-12 col-lg-10 m-auto mt-4 rounded-pill text-center text-white bg-success bg-gradient shadow-lg p-4 ">
                         <h1>2022 World Cup Quiz</h1>
-                        <p>This year <abbr titile="Federation Internationale de Football Association">FIFA</abbr> is
-                            organising
-                            the
-                            22nd World Cup tournament. How up to date are you about the competition? Answer a few
-                            questions
-                            to
-                            find
-                            out!</p>
+                        <p>In 2022 <abbr titile="Federation Internationale de Football Association">FIFA</abbr>
+                            organized the 22nd World Cup tournament. Were you up to date with the competition?
+                            Answer a few questions to find out!</p>
                     </div>
                 </div>
                 <div class=" mt-4 justify-content-center">
